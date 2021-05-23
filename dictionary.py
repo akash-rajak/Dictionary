@@ -60,11 +60,11 @@ frame = tk.Tk()
 frame.title("Dictionary")
 frame.geometry('1000x500')
 
-dic = tk.Label(text = "DICTIONARY", font=("Arial", 50), fg="magenta") # same way bg
+dic = tk.Label(text = "DICTIONARY", font=("Arial", 50), fg="magenta",underline=0) # same way bg
 dic.pack()
 
 start = tk.Label(text = "Enter the word you want to search : ", font=("Arial", 30), fg="red")
-start.pack()
+start.pack(padx=6, pady=20)
 
 # TextBox Creation
 inputtxt = tk.Text(frame,height = 5, width = 60, font=("Arial", 15), bg = "light yellow")
@@ -72,14 +72,14 @@ inputtxt.pack()
 
 # Button Creation
 printButton = tk.Button(frame,text="Find",command= lambda: translate(),font=("Arial", 20), bg = "light green", fg = "blue")
-printButton.pack()
+printButton.pack(padx=6, pady=20)
 
 # printButton = tk.Button(frame,text="Clear",command= lambda: clear_text(),font=("Arial", 20), bg = "light green", fg = "blue")
 # printButton.pack()
 
 # Label Creation
 lbl = tk.Label(frame, text = "Find Meaning Here!",font=("Arial", 20), fg = "brown")
-lbl.pack()
+lbl.pack(padx=6, pady=20)
 frame.mainloop()
 
 '''
