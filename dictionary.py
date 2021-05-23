@@ -3,6 +3,7 @@
 import json  # imported json, because our data is in json form
 from difflib import get_close_matches  # imported get close matches from difflib
 import tkinter as tk  # imported tkinter
+from tkinter import *
 
 # first loads the data of json file in variable data.json
 data = json.load(open("data.json"))
@@ -59,6 +60,28 @@ def translate():
 frame = tk.Tk()
 frame.title("Dictionary")
 frame.geometry('1000x500')
+# frame.configure(background='grey') # for background color of gui window
+
+# bg image part ----------------------------------------------------------
+# # Add image file
+# bg = PhotoImage(file="bg_image.png")
+#
+# # Show image using label
+# label1 = Label(root, image=bg)
+# label1.place(x=0, y=0)
+# Add image file
+# bg = PhotoImage(file="bg_image.png")
+#
+# # Create Canvas
+# canvas1 = Canvas(root, width=400,
+#                  height=400)
+#
+# canvas1.pack(fill="both", expand=True)
+#
+# # Display image
+# canvas1.create_image(0, 0, image=bg,
+#                      anchor="nw")
+# ----------------------------------------------------------------------
 
 dic = tk.Label(text = "DICTIONARY", font=("Arial", 50), fg="magenta",underline=0) # same way bg
 dic.pack()
