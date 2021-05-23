@@ -42,7 +42,7 @@ def translate():
         for i in data[get_close_matches(word, data.keys())[0]]:
             suggested_meaning += i
 
-        lbl.config(text="Meaning of closest word " + suggested_word + " : " + suggested_meaning)
+        lbl.config(text="Meaning of closest word \"" + suggested_word + "\" : " + suggested_meaning)
         # print("Did you mean %s instead " % get_close_matches(word, data.keys())[0])
         # decide = input("Press y for yes and n for no : ")
         # if decide == "y":  # if pressed y, it will give meaning of suggested word
