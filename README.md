@@ -6,10 +6,10 @@
 ****
 
 <p align="center">
-  <img height = 500 width = 1000 src="images/1.jpg" /><br>
-  <img src="images/2.jpg" /><br>
-  <img src="images/3.jpg" /><br>
-  <img src="images/4.jpg" /><br>
-  <img src="images/5.jpg" /><br>
-  <img src="images/6.jpg" /><br>
+  <img src="images/1.png" /><br>
+  <img src="images/2.png" /><br>
+  <img src="images/3.png" /><br>
+  <img src="images/4.png" /><br>
+  <img src="images/5.png" /><br>
+  <img src="images/6.png" /><br>
 </p>
