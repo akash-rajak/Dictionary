@@ -44,7 +44,7 @@ def translate():
         # lbl.config(text = str)
 
         buffer = io.StringIO()
-        print("Meaning of closest word \"" + word + "\" : \n\n" + str, file=buffer)
+        print("Meaning of word \"" + word + "\" : \n\n" + str, file=buffer)
         output = buffer.getvalue()
         outputtxt.delete('1.0', END)
         outputtxt.insert(END, output)
@@ -62,7 +62,7 @@ def translate():
         # lbl.config(text = str)
 
         buffer = io.StringIO()
-        print("Meaning of closest word \"" + word + "\" : \n\n" + str, file=buffer)
+        print("Meaning of word \"" + word + "\" : \n\n" + str, file=buffer)
         output = buffer.getvalue()
         outputtxt.delete('1.0', END)
         outputtxt.insert(END, output)
@@ -80,7 +80,7 @@ def translate():
         # lbl.config(text = str)
 
         buffer = io.StringIO()
-        print("Meaning of closest word \"" + word + "\" : \n\n" + str, file=buffer)
+        print("Meaning of word \"" + word + "\" : \n\n" + str, file=buffer)
         output = buffer.getvalue()
         outputtxt.delete('1.0', END)
         outputtxt.insert(END, output)
