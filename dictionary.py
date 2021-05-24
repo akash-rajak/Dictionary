@@ -1,9 +1,13 @@
 # data we got from data.json file
-import io
+
+# -----------------------------------------------------------------------------------------------------
+import io # used for printing the output in textarea
 import json  # imported json, because our data is in json form
 from difflib import get_close_matches  # imported get close matches from difflib
 import tkinter as tk  # imported tkinter
 from tkinter import *
+# ----------------------------------------------------------------------------------------------------
+
 
 # first loads the data of json file in variable data.json
 data = json.load(open("data.json"))
@@ -12,6 +16,7 @@ data = json.load(open("data.json"))
 #     word = inputtxt.get("1.0", "end-1c")
 #     print(type(word))
 
+# ----------------------------------------------------------------------------------------------------
 # defined function for translating
 def translate():
     word = inputtxt.get("1.0", "end-1c")
@@ -125,7 +130,10 @@ def translate():
 
         buffer.flush()
 
+# ----------------------------------------------------------------------------------------------------
 
+
+# ----------------------------------------------------------------------------------------------------
 # Top level window
 frame = tk.Tk()
 frame.title("Dictionary")
@@ -183,6 +191,8 @@ outputtxt = tk.Text(frame,height = 15, width = 100, font=("Arial", 15), bg = "li
 outputtxt.pack()
 
 frame.mainloop()
+
+# ----------------------------------------------------------------------------------------------------
 
 '''
 # code only when working with console
