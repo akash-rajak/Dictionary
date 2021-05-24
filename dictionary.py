@@ -89,7 +89,7 @@ dic.pack()
 start = tk.Label(text = "Enter the word you want to search : ", font=("Arial", 30), fg="red")
 start.pack(padx=6, pady=20)
 
-# TextBox Creation
+# Input TextBox Creation
 inputtxt = tk.Text(frame,height = 5, width = 60, font=("Arial", 15), bg = "light yellow")
 inputtxt.pack()
 
@@ -103,6 +103,8 @@ printButton.pack(padx=6, pady=20)
 # Label Creation
 lbl = tk.Label(frame, text = "Find Meaning Here!",font=("Arial", 20), fg = "brown")
 lbl.pack(padx=6, pady=20)
+# lbl1 = tk.Label(frame, text = "Next Line!",font=("Arial", 20), fg = "brown")
+# lbl1.pack(padx=6, pady=20)
 frame.mainloop()
 
 '''
