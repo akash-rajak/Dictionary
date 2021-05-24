@@ -1,5 +1,5 @@
 # data we got from data.json file
-
+import io
 import json  # imported json, because our data is in json form
 from difflib import get_close_matches  # imported get close matches from difflib
 import tkinter as tk  # imported tkinter
@@ -18,31 +18,92 @@ def translate():
     # print(word)
     word = word.lower()
     if word == "":
-        lbl.config(text = "You Entered Nothing! Please Enter Some Text.")
+        # lbl.config(text="You Entered Nothing! Please Enter Some Text.")
+
+        buffer = io.StringIO()
+        print("You Entered Nothing! Please Enter Some Text.", file=buffer)
+        output = buffer.getvalue()
+        outputtxt.delete('1.0', END)
+        outputtxt.insert(END, output)
+        buffer.flush()
+
     elif word in data:  # is word is not present it will print None
         str = ""
+        cnt = 0
         for i in data[word]:
+            cnt = cnt + 1
+            str_cnt = f'{cnt}'
+            str+=(str_cnt + ".) ")
             str+=i
-        lbl.config(text = str)
+            str+="\n\n"
+        # lbl.config(text = str)
+
+        buffer = io.StringIO()
+        print("Meaning of closest word \"" + word + "\" : \n\n" + str, file=buffer)
+        output = buffer.getvalue()
+        outputtxt.delete('1.0', END)
+        outputtxt.insert(END, output)
+        buffer.flush()
+
     elif word.title() in data:  # when word entered is title
         str = ""
+        cnt = 0
         for i in data[word.title()]:
+            cnt = cnt + 1
+            str_cnt = f'{cnt}'
+            str += (str_cnt + ".) ")
             str += i
-        lbl.config(text = str)
+            str += "\n\n"
+        # lbl.config(text = str)
+
+        buffer = io.StringIO()
+        print("Meaning of closest word \"" + word + "\" : \n\n" + str, file=buffer)
+        output = buffer.getvalue()
+        outputtxt.delete('1.0', END)
+        outputtxt.insert(END, output)
+        buffer.flush()
+
     elif word.upper() in data:
         str = ""
+        cnt = 0
         for i in data[word.upper()]:
+            cnt = cnt + 1
+            str_cnt = f'{cnt}'
+            str += (str_cnt + ".) ")
             str += i
-        lbl.config(text = str)
+            str += "\n\n"
+        # lbl.config(text = str)
+
+        buffer = io.StringIO()
+        print("Meaning of closest word \"" + word + "\" : \n\n" + str, file=buffer)
+        output = buffer.getvalue()
+        outputtxt.delete('1.0', END)
+        outputtxt.insert(END, output)
+        buffer.flush()
+
     elif len(get_close_matches(word, data.keys())) > 0:  # case of close matches
         suggested_word = ""
         for i in get_close_matches(word, data.keys())[0]:
             suggested_word += i
         suggested_meaning = ""
+        cnt = 0
         for i in data[get_close_matches(word, data.keys())[0]]:
+            cnt = cnt + 1
+            str_cnt = f'{cnt}'
+            suggested_meaning += (str_cnt + ".) ")
             suggested_meaning += i
+            suggested_meaning += "\n\n"
 
-        lbl.config(text="Meaning of closest word \"" + suggested_word + "\" : " + suggested_meaning)
+        # lbl.config(text="Meaning of closest word \"" + suggested_word + "\" : " + suggested_meaning)
+
+        buffer = io.StringIO()
+        print("Meaning of closest word \"" + suggested_word + "\" : \n\n" + suggested_meaning, file=buffer)
+        output = buffer.getvalue()
+        outputtxt.delete('1.0', END)
+        outputtxt.insert(END, output)
+        buffer.flush()
+
+
         # print("Did you mean %s instead " % get_close_matches(word, data.keys())[0])
         # decide = input("Press y for yes and n for no : ")
         # if decide == "y":  # if pressed y, it will give meaning of suggested word
@@ -54,12 +115,22 @@ def translate():
         #     lbl.config(text="Meaning : " + data[word])
         #     print("You have entered wrong word!")
     else:
-        lbl.config(text = "You have entered wrong word!")
+        # lbl.config(text = "You have entered wrong word!")
+
+        buffer = io.StringIO()
+        print("You have entered some wrong word!", file=buffer)
+        output = buffer.getvalue()
+        outputtxt.delete('1.0', END)
+        outputtxt.insert(END, output)
+
+        buffer.flush()
+
 
 # Top level window
 frame = tk.Tk()
 frame.title("Dictionary")
 frame.geometry('1000x500')
+frame.state('zoomed') # for default maximize way
 # frame.configure(background='grey') # for background color of gui window
 
 # bg image part ----------------------------------------------------------
@@ -90,7 +161,7 @@ start = tk.Label(text = "Enter the word you want to search : ", font=("Arial", 3
 start.pack(padx=6, pady=20)
 
 # Input TextBox Creation
-inputtxt = tk.Text(frame,height = 5, width = 60, font=("Arial", 15), bg = "light yellow")
+inputtxt = tk.Text(frame,height = 5, width = 60, font=("Arial", 15), bg = "light yellow",fg = "brown")
 inputtxt.pack()
 
 # Button Creation
@@ -101,10 +172,16 @@ printButton.pack(padx=6, pady=20)
 # printButton.pack()
 
 # Label Creation
-lbl = tk.Label(frame, text = "Find Meaning Here!",font=("Arial", 20), fg = "brown")
-lbl.pack(padx=6, pady=20)
+# lbl = tk.Label(frame, text = "Find Meaning Here!",font=("Arial", 20), fg = "brown")
+# lbl.pack(padx=6, pady=20)
+
 # lbl1 = tk.Label(frame, text = "Next Line!",font=("Arial", 20), fg = "brown")
 # lbl1.pack(padx=6, pady=20)
+
+# Output TextBox Creation
+outputtxt = tk.Text(frame,height = 15, width = 100, font=("Arial", 15), bg = "light yellow", fg = "brown")
+outputtxt.pack()
+
 frame.mainloop()
 
 '''
