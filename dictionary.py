@@ -6,6 +6,7 @@ import json  # imported json, because our data is in json form
 from difflib import get_close_matches  # imported get close matches from difflib
 import tkinter as tk  # imported tkinter
 from tkinter import *
+# from PIL import Image,  ImageTk # for background image
 # ----------------------------------------------------------------------------------------------------
 
 
@@ -141,25 +142,16 @@ frame.geometry('1000x500')
 frame.state('zoomed') # for default maximize way
 # frame.configure(background='grey') # for background color of gui window
 
-# bg image part ----------------------------------------------------------
-# # Add image file
-# bg = PhotoImage(file="bg_image.png")
-#
-# # Show image using label
-# label1 = Label(root, image=bg)
-# label1.place(x=0, y=0)
-# Add image file
-# bg = PhotoImage(file="bg_image.png")
-#
-# # Create Canvas
-# canvas1 = Canvas(root, width=400,
-#                  height=400)
-#
-# canvas1.pack(fill="both", expand=True)
-#
-# # Display image
-# canvas1.create_image(0, 0, image=bg,
-#                      anchor="nw")
+# bg image part ---------------- working but not for background ------------------------------------------
+
+# path = "images/bgimage.jpg"
+# # Creates a Tkinter-compatible photo image, which can be used everywhere Tkinter expects an image object.
+# img = ImageTk.PhotoImage(Image.open(path))
+# # The Label widget is a standard Tkinter widget used to display a text or image on the screen.
+# panel = tk.Label(frame, image = img)
+# # The Pack geometry manager packs widgets in rows or columns.
+# panel.pack(side = "bottom", fill = "both", expand = "no")
+
 # ----------------------------------------------------------------------
 
 dic = tk.Label(text = "DICTIONARY", font=("Arial", 50), fg="magenta",underline=0) # same way bg
@@ -169,11 +161,11 @@ start = tk.Label(text = "Enter the word you want to search : ", font=("Arial", 3
 start.pack(padx=6, pady=20)
 
 # Input TextBox Creation
-inputtxt = tk.Text(frame,height = 5, width = 60, font=("Arial", 15), bg = "light yellow",fg = "brown")
+inputtxt = tk.Text(frame,height = 5, width = 60, font=("Arial", 15), bg = "light yellow",fg = "brown", borderwidth=3, relief="solid")
 inputtxt.pack()
 
 # Button Creation
-printButton = tk.Button(frame,text="Find",command= lambda: translate(),font=("Arial", 20), bg = "light green", fg = "blue")
+printButton = tk.Button(frame,text="SEARCH",command= lambda: translate(),font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised")
 printButton.pack(padx=6, pady=20)
 
 # printButton = tk.Button(frame,text="Clear",command= lambda: clear_text(),font=("Arial", 20), bg = "light green", fg = "blue")
@@ -187,7 +179,7 @@ printButton.pack(padx=6, pady=20)
 # lbl1.pack(padx=6, pady=20)
 
 # Output TextBox Creation
-outputtxt = tk.Text(frame,height = 15, width = 100, font=("Arial", 15), bg = "light yellow", fg = "brown")
+outputtxt = tk.Text(frame,height = 15, width = 100, font=("Arial", 15), bg = "light yellow", fg = "brown", borderwidth=3, relief="solid")
 outputtxt.pack()
 
 frame.mainloop()
