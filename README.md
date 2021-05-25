@@ -11,6 +11,7 @@
   <img src="images/3.png" /><br>
   <img src="images/4.png" /><br>
   <img src="images/5.png" /><br>
+  <img src="images/6.png" /><br>
 </p>
 
 ****
