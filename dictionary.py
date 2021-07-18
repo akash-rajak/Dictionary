@@ -70,7 +70,7 @@ class Keypad(tk.Frame):
 
     def get(self):
         if self.target:
-            return self.target.get("1.0", "end-1c")
+            return self.target.get()
 
     def append(self, text):
         if self.target:
@@ -78,7 +78,7 @@ class Keypad(tk.Frame):
 
     def clear(self):
         if self.target:
-            self.target.delete('1.0', 'end')
+            self.target.delete(0, END)
 
     def backspace(self):
         if self.target:
