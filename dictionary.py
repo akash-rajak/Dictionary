@@ -23,6 +23,8 @@ import json
 from difflib import get_close_matches
 import pandas as pd
 import pyttsx3
+import speech_recognition as sr
+import pyaudio
 
 # ------------------------------------------------------------------------------------------------------------------
 data = pd.read_csv('Related/words.csv')
@@ -162,6 +164,22 @@ def out_text_to_speech(**kwargs):
     engine.stop()
     # out_b.configure(command=read_text)
 
+def input_speech():
+    r = sr.Recognizer()
+    inputentry.delete(0, END)
+    inputentry.insert(0, "Listening... Speak now...")
+    with sr.Microphone() as source:
+        # print("Listening... Speak now...")
+        audio = r.listen(source)
+        try:
+            text = r.recognize_google(audio)
+            inputentry.delete(0, END)
+            inputentry.insert(0,text)
+            # print("You said : {}".format(text))
+        except:
+            inputentry.delete(0, END)
+            inputentry.insert(0, "Didn't get that. Try again...")
+
 # function defined th=o clear both the input text and output text --------------------------------------------------
 def clear_text():
     inputentry.delete(0, END)
@@ -284,11 +302,11 @@ window.geometry('1000x500')
 window.state('zoomed') # for default maximize way
 
 # for writing Dictionary label, at the top of window
-dic = tk.Label(text = "ENGLISH DICTIONARY", font=("Arial", 50), fg="magenta",underline=0) # same way bg
-dic.pack()
+dic = tk.Label(text = "ENGLISH DICTIONARY", font=("Arial", 50), fg="magenta") # same way bg
+dic.place(x = 400, y = 10)
 
-start1 = tk.Label(text = "Enter the text you want to search...", font=("Arial", 30), fg="green",underline=0) # same way bg
-start1.pack()
+start1 = tk.Label(text = "Enter the text you want to search...", font=("Arial", 30), fg="green") # same way bg
+start1.place(x = 450, y = 100)
 
 myname = StringVar(window)
 firstclick1 = True
@@ -306,17 +324,19 @@ def on_inputentry_click(event):
 inputentry = AutocompleteEntry(autocompleteList, window,font=("Arial", 35) , width=33, border=2, matchesFunction=matches)
 inputentry.insert(0, 'Enter the word you want to search...')
 inputentry.bind('<FocusIn>', on_inputentry_click)
-inputentry.place(x=350, y=150)
+inputentry.place(x=320, y=160)
 
+# # creating speech to text button
+speech_in_b = Button(window,text="🎙",command= input_speech,font=("Arial", 18), bg = "light yellow", fg = "green", borderwidth=3, relief="raised").place(x = 1200, y = 163)
 
 # # Creating Search Button
-Button(window,text="SEARCH",command= search_word,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 400, y = 250)
+Button(window,text="🔍 SEARCH",command= search_word,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 370, y = 250)
 
 # # creating clear button
-Button(window,text="CLEAR",command= clear_text,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 650, y = 250)
+Button(window,text="🧹 CLEAR",command= clear_text,font=("Arial", 20), bg = "orange", fg = "blue", borderwidth=3, relief="raised").place(x = 615, y = 250)
 
 # # creating text to speech button
-in_b = Button(window,text="TEXT TO SPEECH",command= in_text_to_speech,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 880, y = 250)
+in_b = Button(window,text="🔊 TEXT TO SPEECH",command= in_text_to_speech,font=("Arial", 20), bg = "yellow", fg = "blue", borderwidth=3, relief="raised").place(x = 840, y = 250)
 
 # # Output TextBox Creation
 outputtxt = tk.Text(window,height = 15, width = 100, font=("Arial", 15), bg = "light yellow", fg = "brown", borderwidth=3, relief="solid")
@@ -327,10 +347,10 @@ def exit_win():
         window.destroy()
 
 # # creating exit button
-Button(window,text="EXIT",command= exit_win,font=("Arial", 20), bg = "red", fg = "black", borderwidth=3, relief="raised").place(x = 1350, y = 20)
+Button(window,text="❌ EXIT",command= exit_win,font=("Arial", 20), bg = "red", fg = "black", borderwidth=3, relief="raised").place(x = 1350, y = 20)
 
 # # creating text to speech button
-out_b = Button(window,text="TEXT TO SPEECH",command= out_text_to_speech,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 630, y = 720)
+out_b = Button(window,text="🔊 TEXT TO SPEECH",command= out_text_to_speech,font=("Arial", 20), bg = "yellow", fg = "blue", borderwidth=3, relief="raised").place(x = 600, y = 720)
 
 
 window.protocol("WM_DELETE_WINDOW", exit_win)
