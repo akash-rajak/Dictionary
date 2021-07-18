@@ -41,20 +41,19 @@
 ****
 
 <p align="center">
-  <img width = 1000 src="Images/1.jpg" /><br>
-  <img width = 1000 src="Images/2.jpg" /><br>
-  <img width = 1000 src="Images/3.jpg" /><br>
-  <img width = 1000 src="Images/4.jpg" /><br>
-  <img width = 1000 src="Images/5.jpg" /><br>
-  <img width = 1000 src="Images/6.jpg" /><br>
-  <img width = 1000 src="Images/7.jpg" /><br>
-  <img width = 1000 src="Images/8.jpg" /><br>
-  <img width = 1000 src="Images/9.jpg" /><br>
-  <img width = 1000 src="Images/10.jpg" /><br>
+  <img width = 1000 src="images/1.jpg" /><br>
+  <img width = 1000 src="images/2.jpg" /><br>
+  <img width = 1000 src="images/3.jpg" /><br>
+  <img width = 1000 src="images/4.jpg" /><br>
+  <img width = 1000 src="images/5.jpg" /><br>
+  <img width = 1000 src="images/6.jpg" /><br>
+  <img width = 1000 src="images/7.jpg" /><br>
+  <img width = 1000 src="images/8.jpg" /><br>
+  <img width = 1000 src="images/9.jpg" /><br>
+  <img width = 1000 src="images/10.jpg" /><br>
 </p>
 
 ****
 
 # Name :
 - ### Akash Ramanand Rajak
-
