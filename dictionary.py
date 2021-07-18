@@ -22,6 +22,7 @@ import tkinter as tk  # imported tkinter as tk
 import json
 from difflib import get_close_matches
 import pandas as pd
+import pyttsx3
 
 # ------------------------------------------------------------------------------------------------------------------
 data = pd.read_csv('Related/words.csv')
@@ -136,6 +137,30 @@ def matches(fieldValue, acListEntry):
 # ------------------------------------------------------------------------------------------------------------------
 
 data = json.load(open("Related/data.json"))       #loading and storing the data from json file
+
+# input text to speech
+def in_text_to_speech(**kwargs):
+    if 'text' in kwargs:
+        text = kwargs['text']
+    else:
+        text = inputentry.get() # get text content
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+    engine.stop()
+    # in_b.configure(command=read_text)
+
+# output text to speech
+def out_text_to_speech(**kwargs):
+    if 'text' in kwargs:
+        text = kwargs['text']
+    else:
+        text = outputtxt.get(1.0, 'end') # get text content
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+    engine.stop()
+    # out_b.configure(command=read_text)
 
 # function defined th=o clear both the input text and output text --------------------------------------------------
 def clear_text():
@@ -285,12 +310,13 @@ inputentry.place(x=350, y=150)
 
 
 # # Creating Search Button
-Button(window,text="SEARCH",command= search_word,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 550, y = 250)
-
+Button(window,text="SEARCH",command= search_word,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 400, y = 250)
 
 # # creating clear button
-Button(window,text="CLEAR",command= clear_text,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 800, y = 250)
+Button(window,text="CLEAR",command= clear_text,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 650, y = 250)
 
+# # creating text to speech button
+in_b = Button(window,text="TEXT TO SPEECH",command= in_text_to_speech,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 880, y = 250)
 
 # # Output TextBox Creation
 outputtxt = tk.Text(window,height = 15, width = 100, font=("Arial", 15), bg = "light yellow", fg = "brown", borderwidth=3, relief="solid")
@@ -301,7 +327,10 @@ def exit_win():
         window.destroy()
 
 # # creating exit button
-Button(window,text="EXIT",command= exit_win,font=("Arial", 20), bg = "red", fg = "black", borderwidth=3, relief="raised").place(x = 700, y = 720)
+Button(window,text="EXIT",command= exit_win,font=("Arial", 20), bg = "red", fg = "black", borderwidth=3, relief="raised").place(x = 1350, y = 20)
+
+# # creating text to speech button
+out_b = Button(window,text="TEXT TO SPEECH",command= out_text_to_speech,font=("Arial", 20), bg = "light green", fg = "blue", borderwidth=3, relief="raised").place(x = 630, y = 720)
 
 
 window.protocol("WM_DELETE_WINDOW", exit_win)
