@@ -30,6 +30,101 @@ import pyaudio
 data = pd.read_csv('Related/words.csv')
 autocompleteList = data['Words'].tolist()
 
+# -----------------------------------------------------------------------------------------------
+
+class Keypad(tk.Frame):
+
+    cells = [
+        ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+        ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm','n', 'o', 'p', 'q','r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+        ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M','N', 'O', 'P', 'Q','R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+        ['!', '@', '#', '$', '%', '&', '*', '/', '\'', '.', ',', ';', ':', '?', '<', '>','😀','😋','😂','🌞','🌴','🍕','🏳', '♻', '✔', '👍'],
+    ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.target = None
+        self.memory = ''
+
+        for y, row in enumerate(self.cells):
+            for x, item in enumerate(row):
+                b = tk.Button(self, text=item, command=lambda text=item:self.append(text),font=("Arial", 14), bg = "light green", fg = "blue", borderwidth=3, relief="raised")
+                b.grid(row=y, column=x, sticky='news')
+
+        x = tk.Button(self, text='Space', command=self.space,font=("Arial", 14), bg = "light green", fg = "blue", borderwidth=3, relief="raised")
+        x.grid(row=0, column=10, columnspan='4', sticky='news')
+
+        x = tk.Button(self, text='tab', command=self.tab,font=("Arial", 14), bg = "light green", fg = "blue", borderwidth=3, relief="raised")
+        x.grid(row=0, column=14, columnspan='3', sticky='news')
+
+        x = tk.Button(self, text='Backspace', command=self.backspace,font=("Arial", 14), bg = "light green", fg = "blue", borderwidth=3, relief="raised")
+        x.grid(row=0, column=17,columnspan='3', sticky='news')
+
+        x = tk.Button(self, text='Clear', command=self.clear,font=("Arial", 14), bg = "light green", fg = "blue", borderwidth=3, relief="raised")
+        x.grid(row=0, column=20, columnspan='3',  sticky='news')
+
+        x = tk.Button(self, text='Hide', command=self.hide,font=("Arial", 14), bg = "light green", fg = "blue", borderwidth=3, relief="raised")
+        x.grid(row=0, column=23, columnspan='3', sticky='news')
+
+
+    def get(self):
+        if self.target:
+            return self.target.get("1.0", "end-1c")
+
+    def append(self, text):
+        if self.target:
+            self.target.insert('end', text)
+
+    def clear(self):
+        if self.target:
+            self.target.delete('1.0', 'end')
+
+    def backspace(self):
+        if self.target:
+            text = self.get()
+            text = text[:-1]
+            self.clear()
+            self.append(text)
+
+    def space(self):
+        if self.target:
+            text = self.get()
+            text = text + " "
+            self.clear()
+            self.append(text)
+
+    def tab(self): # 5 spaces
+        if self.target:
+            text = self.get()
+            text = text + "     "
+            self.clear()
+            self.append(text)
+
+    def copy(self):
+        #TODO: copy to clipboad
+        if self.target:
+            self.memory = self.get()
+            self.label['text'] = 'memory: ' + self.memory
+            print(self.memory)
+
+    def paste(self):
+        #TODO: copy from clipboad
+        if self.target:
+            self.append(self.memory)
+
+    def show(self, entry):
+        self.target = entry
+
+        self.place(relx=0.5, rely=0.5, anchor='c')
+
+    def hide(self):
+        self.target = None
+
+        self.place_forget()
+
+#-------------------------------------------------------
+
 class AutocompleteEntry(Entry):
     def __init__(self, autocompleteList, *args, **kwargs):
 
@@ -352,6 +447,10 @@ Button(window,text="❌ EXIT",command= exit_win,font=("Arial", 20), bg = "red", 
 # # creating text to speech button
 out_b = Button(window,text="🔊 TEXT TO SPEECH",command= out_text_to_speech,font=("Arial", 20), bg = "yellow", fg = "blue", borderwidth=3, relief="raised").place(x = 600, y = 720)
 
+keypad = Keypad(window)
+
+# # creating speech to text button
+v_keypadb = Button(window,text="⌨",command= lambda:keypad.show(inputentry),font=("Arial", 18), bg = "light yellow", fg = "green", borderwidth=3, relief="raised").place(x = 1260, y = 163)
 
 window.protocol("WM_DELETE_WINDOW", exit_win)
 window.mainloop()
