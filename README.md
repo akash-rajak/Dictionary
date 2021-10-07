@@ -7,7 +7,7 @@
 
 ****
 
-## REQUIREMENTS :
+### REQUIREMENTS :
 - python 3
 - tkinter module
 - from tkinter messagebox module
@@ -17,7 +17,7 @@
 - io 
 - pyttsx3 
 
-## Changes Done :
+### Changes Done :
 
 - Changed the gui of the dictionary window.
 - Added clear and exit button also.
@@ -27,16 +27,16 @@
 - Added text to speech feature for both input and output area.
 
 
-## Purpose :
+### Purpose :
 - This scripts helps us to easily get the meaning of any word be entering text in search area and searching it. Also can get the speech of text and meaning of it.
 
-## Compilation Steps :
+### Compilation Steps :
 - Install tkinter, json, difflib, pandas, io, pyttsx3
 - After that download the code file, and run dictionary.py on local system.
 - Then the script will start running and user can explore it by entering any text and searching it.
 
 
-## SCREENSHOTS :
+### SCREENSHOTS :
 
 ****
 
@@ -55,5 +55,5 @@
 
 ****
 
-## Name :
+### Name :
 - Akash Ramanand Rajak
