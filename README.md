@@ -38,8 +38,6 @@
 
 ### SCREENSHOTS :
 
-****
-
 <p align="center">
   <img width = 1000 src="images/1.jpg" /><br>
   <img width = 1000 src="images/2.jpg" /><br>
